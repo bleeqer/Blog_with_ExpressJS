@@ -30,7 +30,7 @@
                             <!-- To make this form functional, sign up at-->
                             <!-- https://startbootstrap.com/solution/contact-forms-->
                             <!-- to get an API token!-->
-                            <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="/posts/store" method="POST">
+                            <form id="postCreateForm" action="/posts/store" method="POST" enctype="multipart/form-data">
                                 <div class="form-floating">
                                     <input class="form-control" id="title" name="title" type="text" placeholder="Enter title..." data-sb-validations="required" />
                                     <label for="title">Title</label>
@@ -39,7 +39,10 @@
                                 <div class="form-floating">
                                     <textarea rows="5" class="form-control" id="body" name="body" ></textarea>
                                     <label for="Description">Description</label>
-
+                                </div>
+                                <div class="form-floating">
+                                    <input type="file" class="form-control" id="image" name="image">
+                                    <label for="image">Image</label>
                                 </div>
                                 <br />
 

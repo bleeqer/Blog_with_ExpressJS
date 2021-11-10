@@ -28,7 +28,7 @@
                     <!-- Post preview-->
                     <% for(var i = 0; i < blogposts.length; i++){ %>
                     <div class="post-preview">
-                        <a href="post.html">
+                        <a href="/post/<%= blogposts[i]._id %>">
                             <h2 class="post-title">
                                 <%= blogposts[i].title %>
                             </h2>
@@ -36,9 +36,8 @@
                                 <%= blogposts[i].body %>
                         </a>
                         <p class="post-meta">
-                            Posted by
-                            <a href="#!"></a>
-                            
+                            Posted by <a href="#"><%= blogposts[i].username %></a>
+                            on <%= blogposts[i].datePosted.toDateString() %>
                         </p>
                     </div>
                     <!-- Divider-->
