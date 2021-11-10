@@ -44,8 +44,18 @@ app.post('/posts/store', async (req, res) => {
 })
 
 app.get('/', async (req, res) => {
-    const blogposts = await BlogPost.find({})
+    word = req.query.searchWord
+
+    if (word) {
+        const blogposts = await BlogPost.find({title: new RegExp(word, "i")})
+        console.log(blogposts)
         res.render('index', {
             blogposts
         })
+    } else {
+        const blogposts = await BlogPost.find({})
+            res.render('index', {
+                blogposts
+            })
+    }
 })

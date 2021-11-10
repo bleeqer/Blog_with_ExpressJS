@@ -20,6 +20,11 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
+                    <form action='/'>
+                        검색어를 입력하세요. <br>
+                        <input name='searchWord'>
+                        <button type=submit>검색</button>
+                    </form>
                     <!-- Post preview-->
                     <% for(var i = 0; i < blogposts.length; i++){ %>
                     <div class="post-preview">
