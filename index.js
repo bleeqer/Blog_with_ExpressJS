@@ -19,11 +19,6 @@ app.listen(4000, () => {
     console.log("App listening on port 4000")
 })
 
-// res.render looks in a 'views' folder for the file index.ejs (ejs becuase i set it as templating engine)
-app.get('/', (req, res) => {
-    res.render('index')
-})
-
 app.get('/contact', (req, res) => {
     res.render('contact')
 })
@@ -46,4 +41,11 @@ app.post('/posts/store', async (req, res) => {
     // BlogPost.create(req.body, (error, blogpost) => {
     //     res.redirect('/')
     // })
+})
+
+app.get('/', async (req, res) => {
+    const blogposts = await BlogPost.find({})
+        res.render('index', {
+            blogposts
+        })
 })
