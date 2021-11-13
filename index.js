@@ -1,8 +1,12 @@
-const express = require("express")
-const path = require('path')
-const BlogPost = require('./models/blogPost.js')
+const express = require('express')
 const fileUpload = require('express-fileupload')
+const validateNiddleware = require('./middleware/validateMiddleware')
 
+// controllers
+const newPostController = require('./controllers/newPost')
+const homeController = require('./controllers/home') 
+const storePostController = require('./controllers/storePost') 
+const getPostController = require('./controllers/getPost')
 
 // calls express function to start new Express app
 const app = express()
@@ -15,56 +19,20 @@ app.use(express.static('public'))
 app.use(express.json()) 
 app.use(express.urlencoded())
 
+// i switched the order because we call req in the middleware which has file property
 app.use(fileUpload())
+
+// middleware tests
+app.use('/posts/store', validateMiddleWare)
+
+
 
 
 app.listen(4000, () => {
     console.log("App listening on port 4000")
 })
 
-app.get('/', async (req, res) => {
-    word = req.query.searchWord
-
-    if (word) {
-        const blogposts = await BlogPost.find({title: new RegExp(word, "i")})
-        res.render('index', {
-            blogposts
-        })
-    } else {
-        const blogposts = await BlogPost.find({})
-            res.render('index', {
-                blogposts
-            })
-    }
-})
-
-app.get('/contact', (req, res) => {
-    res.render('contact')
-})
-
-app.get('/post/:id', async (req, res) => {
-    const blogpost = await BlogPost.findById(req.params.id)
-    res.render('post', { blogpost })
-})
-
-app.get('/about', (req, res) => {
-    res.render('about')
-})
-
-app.get('/posts/new', (req, res) => {
-    res.render('create')
-})
-
-app.post('/posts/store', (req, res) => {
-    let image = req.files.image;
-    console.log(image)
-    image.mv(path.resolve(__dirname, 'public/img', image.name), async (error) => {
-        await BlogPost.create({
-            ...req.body,
-            image: '/img/' + image.name
-        })
-        res.redirect('/')
-    })
-
-})
+app.get('/', homeController)
+app.get('/post/"id', getPostController)
+app.post('/posts/store', storePostController)
 
