@@ -18,11 +18,14 @@ const UserSchema = new Schema({
 
 // tells the schema execute the call back function before 'save' a document
 // mongoose makes the UserSchema available via 'this'
-UserSchema.pre('save', next => {
+UserSchema.pre('save', function(next) {
     const user = this
+    console.log('유저 객체 확인: ', user)
     // the second argument means how many rounds the function hash the password
     bcrypt.hash(user.password, 10, (error, hash) => {
+        console.log(error, hash)
         user.password = hash
+
         next()
     })
 })

@@ -26,18 +26,18 @@
                         <button type=submit>검색</button>
                     </form>
                     <!-- Post preview-->
-                    <% for(var i = 0; i < blogposts.length; i++){ %>
+                    <% for(var i = 0; i < blogPosts.length; i++){ %>
                     <div class="post-preview">
-                        <a href="/post/<%= blogposts[i]._id %>">
+                        <a href="/post/<%= blogPosts[i]._id %>">
                             <h2 class="post-title">
-                                <%= blogposts[i].title %>
+                                <%= blogPosts[i].title %>
                             </h2>
                             <h3 class="post-subtitle"></h3>
-                                <%= blogposts[i].body %>
+                                <%= blogPosts[i].body %>
                         </a>
                         <p class="post-meta">
-                            Posted by <a href="#"><%= blogposts[i].username %></a>
-                            on <%= blogposts[i].datePosted.toDateString() %>
+                            Posted by <a href="#"><%= blogPosts[i].username %></a>
+                            on <%= blogPosts[i].datePosted.toDateString() %>
                         </p>
                     </div>
                     <!-- Divider-->
