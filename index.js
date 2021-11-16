@@ -88,3 +88,6 @@ app.post('/posts/store', authMiddleware, storePostController)
 // user log out
 app.get('/auth/logout', logoutController)
 
+// when there's no matched path
+app.use((req, res) => res.render('notfound'))
+
