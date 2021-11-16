@@ -1,6 +1,7 @@
 const express = require('express')
 const fileUpload = require('express-fileupload')
 const expressSession = require('express-session')
+const flash = require('connect-flash')
 
 // customed middleware
 const validateMiddleware = require('./middleware/validateMiddleware')
@@ -23,6 +24,9 @@ const logoutController = require('./controllers/logout')
 const app = express()
 const ejs = require('ejs')
 
+// register flash
+app.use(flash())
+
 // sets ejs as templating engine
 app.set('view engine', 'ejs')
 
@@ -34,7 +38,7 @@ app.use(express.urlencoded())
 app.use(fileUpload())
 
 // middleware
-app.use('/posts/store', validateMiddleware)
+// app.use('/posts/store', validateMiddleware)
 
 
 // session

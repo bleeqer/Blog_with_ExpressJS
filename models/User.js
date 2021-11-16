@@ -1,20 +1,23 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
+var uniqueValidator = require('mongoose-unique-validator')
 
 mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser:true})
 
 const UserSchema = new Schema({
     username: {
         type: String,
-        required: true,
+        required: [true, 'Please provide username'],
         unique: true
     },
     password: {
         type: String,
-        required: true
+        required: [true, 'Please provide password'],
     }
 })
+
+UserSchema.plugin(uniqueValidator)
 
 // tells the schema execute the call back function before 'save' a document
 // mongoose makes the UserSchema available via 'this'

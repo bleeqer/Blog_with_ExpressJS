@@ -30,14 +30,22 @@
                             <!-- To make this form functional, sign up at-->
                             <!-- https://startbootstrap.com/solution/contact-forms-->
                             <!-- to get an API token!-->
+                            <% console.log(errors) %>
+                            <% if(errors != null && errors.length > 0) { %>
+                                <ul class="list-group">    
+                                <% for (var i = 0; i < errors.length; i++) { %> 
+                                    <li class="list-group-item list-group-item-danger"><%= errors[i] %></li> 
+                                <% } %> 
+                                </ul>        
+                            <% } %>
                             <form id="postCreateForm" action="/posts/store" method="POST" enctype="multipart/form-data">
                                 <div class="form-floating">
-                                    <input class="form-control" id="title" name="title" type="text" placeholder="Enter title..." data-sb-validations="required" />
+                                    <input class="form-control" value="<%= title %>" id="title" name="title" type="text" placeholder="Enter title..." data-sb-validations="required" />
                                     <label for="title">Title</label>
                                     <div class="invalid-feedback" data-sb-feedback="name:required">A title is required.</div>
                                 </div>
                                 <div class="form-floating">
-                                    <textarea rows="5" class="form-control" id="body" name="body" ></textarea>
+                                    <textarea rows="5" value="<%= content %>" class="form-control" id="body" name="body" ></textarea>
                                     <label for="Description">Description</label>
                                 </div>
                                 <div class="form-floating">

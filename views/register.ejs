@@ -39,12 +39,12 @@
                             <% } %>
                             <form id="register" action="/users/register" method="POST" enctype="multipart/form-data">
                                 <div class="form-floating">
-                                    <input class="form-control" id="username" name="username" type="text" placeholder="Enter user name..." data-sb-validations="required" />
+                                    <input class="form-control" id="username" name="username" type="text" placeholder="Enter user name..." data-sb-validations="required" value="<%= username %>"/>
                                     <label for="title">User name</label>
                                     <div class="invalid-feedback" data-sb-feedback="name:required">An user name is required.</div>
                                 </div>
                                 <div class="form-floating">
-                                    <textarea rows="5" class="form-control" id="password" name="password" ></textarea>
+                                    <input class="form-control" id="password" name="password" type="text" placeholder="Enter user password..." data-sb-validations="required" value="<%= password %>"/>
                                     <label for="password">Password</label>
                                 </div>
                                 <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Register</button>
