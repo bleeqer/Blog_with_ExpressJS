@@ -45,8 +45,10 @@
                                     <div class="invalid-feedback" data-sb-feedback="name:required">A title is required.</div>
                                 </div>
                                 <div class="form-floating">
-                                    <textarea rows="5" value="<%= content %>" class="form-control" id="body" name="body" ></textarea>
                                     <label for="Description">Description</label>
+                                    <textarea rows="5" value="<%= content %>" class="form-control" id="body" name="body" ></textarea>
+                                    <!-- summernote editor -->
+                                    <script> $('#body').summernote({ placeholder: '내용을 입력해 주세요...', tabsize: 2, height: 200 }); </script>
                                 </div>
                                 <div class="form-floating">
                                     <input type="file" class="form-control" id="image" name="image">

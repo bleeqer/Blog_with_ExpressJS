@@ -32,8 +32,6 @@ module.exports = async (req, res) => {
                 req.flash('data', req.body)
                 return res.redirect('/posts/new')
             } else {
-                console.log(req.session.userId)
-                console.log("포스트 생성 성공")
                 res.redirect('/')
             }
         })
