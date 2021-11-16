@@ -5,6 +5,7 @@ const expressSession = require('express-session')
 // customed middleware
 const validateMiddleware = require('./middleware/validateMiddleware')
 const authMiddleware = require('./middleware/authMiddleware')
+const redirectIfAutenticatedMiddleware = require('./middleware/redirectIfAutenticatedMiddleware')
 
 
 // controllers
@@ -54,16 +55,16 @@ app.get('/', homeController)
 app.get('/post/"id', getPostController)
 
 // user login
-app.get('/auth/login', loginController)
+app.get('/auth/login', redirectIfAutenticatedMiddleware, loginController)
 
 // user register form
-app.get('/auth/register', newUserController)
+app.get('/auth/register', redirectIfAutenticatedMiddleware, newUserController)
 
 // user login
-app.post('/users/login', loginUserController)
+app.post('/users/login', redirectIfAutenticatedMiddleware, loginUserController)
 
 // storing user info
-app.post('/users/register', storeUserController)
+app.post('/users/register', redirectIfAutenticatedMiddleware, storeUserController)
 
 
 // authMiddleware will be called before the controllers
