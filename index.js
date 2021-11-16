@@ -17,6 +17,7 @@ const newUserController = require('./controllers/newUser')
 const storeUserController = require('./controllers/storeUser')
 const loginUserController = require('./controllers/loginUser')
 const loginController = require('./controllers/login')
+const logoutController = require('./controllers/logout')
 
 // calls express function to start new Express app
 const app = express()
@@ -48,6 +49,15 @@ app.listen(4000, () => {
     console.log("App listening on port 4000")
 })
 
+// declaring a gobal variable that will be accessible from all EJS files 
+global.loggedIn = null
+
+// this middleware will be executed on all requests
+app.use("*", (req, res, next) => {
+    loggedIn = req.session.userId
+    next()
+})
+
 // home
 app.get('/', homeController)
 
@@ -75,4 +85,6 @@ app.get('/posts/new', authMiddleware, newPostController)
 // storing a post
 app.post('/posts/store', authMiddleware, storePostController)
 
+// user log out
+app.get('/auth/logout', logoutController)
 
