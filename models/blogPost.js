@@ -13,7 +13,13 @@ const BlogPostSchema = new Schema({
         type: String,
         required: [true, 'Please provide content']
     },
-    username: String, 
+    userid: {
+        // the value is supposed to be a valid Mongo object id
+        type: mongoose.Schema.Types.ObjectId,
+        // tells which collection it should refer to
+        ref: 'User',
+        required: true
+    }, 
     datePosted:{
         type: Date, 
         default: new Date()
